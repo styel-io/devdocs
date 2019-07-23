@@ -1,6 +1,6 @@
 # JWT
 
-## 1. JWT란?
+## 1. JWT란
 
 <https://velopert.com/2389>
 
