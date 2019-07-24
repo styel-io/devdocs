@@ -52,7 +52,7 @@ const connectDB = require("./config/db");
 connectDB();
 ```
 
-## STEP_3: Run serve and MongoDB 접속 확인
+## STEP_3: Run server and MongoDB 접속 확인
 
 ```bash
 [nodemon] starting `node server.js`
