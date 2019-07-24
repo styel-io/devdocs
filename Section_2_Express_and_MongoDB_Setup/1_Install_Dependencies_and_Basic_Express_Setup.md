@@ -25,6 +25,19 @@ yarn add express express-validator bcryptjs config gravatar jsonwebtoken mongoos
 yarn add -D nodemon concurrently
 ```
 
+| Dependencies                                                         | explanation                                    |
+| -------------------------------------------------------------------- | ---------------------------------------------- |
+| [express](https://www.npmjs.com/package/express)                     | web framework for node                         |
+| [express-validator](https://www.npmjs.com/package/express-validator) | An express.js middleware for validator         |
+| [bcryptjs](https://www.npmjs.com/package/bcryptjs)                   | password hash                                  |
+| [config](https://www.npmjs.com/package/config)                       | Configure Node.js Applications                 |
+| [gravatar](https://www.npmjs.com/package/gravatar)                   | A library to generate Gravatar URLs in Node.js |
+| [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)           | Json Web Token                                 |
+| [mongoose](https://www.npmjs.com/package/mongoose)                   | MongoDB object modeling tool                   |
+| [request](https://www.npmjs.com/package/request)                     | simplest way possible to make http calls       |
+| [nodemon](https://www.npmjs.com/package/nodemon)                     | automatically restarting the node application  |
+| [concurrently](https://www.npmjs.com/package/concurrently)           | Run multiple commands concurrently             |
+
 ## STEP_4: Add Main entry file - server.js
 
 `server.js` 파일을 생성하고 express server를 동작시키기 위해 아래 코드를 작성하여 초기 설정을 한다
