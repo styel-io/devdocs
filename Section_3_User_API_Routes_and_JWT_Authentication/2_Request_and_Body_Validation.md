@@ -122,5 +122,9 @@ postman을 이용하여 검증해보자
 name 값만 전달했더니 email과 password가 정확한 값이 들어오지 않아 에러를 나타낸다  
 Status는 400 Bad Request를 나타낸다
 <br><br><br>
-![/routes/api/users 200 Ok](https://user-images.githubusercontent.com/14961047/61806527-cc622680-ae72-11e9-8a66-801ebb5f7db5.png)
+![/routes/api/users 200 Ok](https://user-images.githubusercontent.com/14961047/61837300-1ffa6180-aebf-11e9-8c02-a8388e586d91.png)
+
 요청 값을 모두 충족시켰더니 정상적으로 값을 반환한다
+
+![saved database](https://user-images.githubusercontent.com/14961047/61837403-88e1d980-aebf-11e9-9116-81c3d43650d6.png)
+데이터베이스에 패스워드 값이 해쉬화 되어 정상적으로 저장이 되었다.
