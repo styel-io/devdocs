@@ -14,7 +14,6 @@ Styel Developer Documentation
 | Package Manager for JavaScript     | [Yarn](https://yarnpkg.com/lang/en/)                                    |
 | process manager for Node.js        | [PM2](http://pm2.keymetrics.io/)                                        |
 | JavaScript Library                 | [React](https://reactjs.org/)                                           |
-| Style Sheets                       | [SASS( Syntactically Awesome Style Sheets )](https://sass-lang.com/)    |
 | Database                           | [MongoDB](https://www.mongodb.com/)                                     |
 | Auth                               | [JWT ( JSON Web Tokens )](https://jwt.io/)                              |
 | Distributed Version Control System | [Git](https://git-scm.com/) && [Github](https://github.com/)            |
@@ -32,6 +31,14 @@ Styel Developer Documentation
 | HTTP request Logger middleware | [morgan](https://www.npmjs.com/package/morgan)                   |
 | Flash messages                 | [connect-flash](https://www.npmjs.com/package/connect-flash)     |
 
-| React Modules |                                            |
-| ------------- | ------------------------------------------ |
-| Style Sheets  | [SASS](https://www.npmjs.com/package/sass) |
+| React Modules                                         |                                                                                    |
+| ----------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| Style Sheets                                          | [SASS](https://www.npmjs.com/package/sass)                                         |
+| Promise based HTTP client for the browser and node.js | [axios](https://www.npmjs.com/package/axios)                                       |
+| DOM bindings for React Router                         | [react-router-dom](https://www.npmjs.com/package/react-router-dom)                 |
+| predictable state container                           | [redux](https://www.npmjs.com/package/redux)                                       |
+| React bindings for Redux                              | [react-redux](https://www.npmjs.com/package/react-redux)                           |
+| Thunk middleware for Redux                            | [redux-thunk](https://www.npmjs.com/package/redux-thunk)                           |
+| Redux DevTools Extension's helper                     | [redux-devtools-extension](https://www.npmjs.com/package/redux-devtools-extension) |
+| date library                                          | [moment](https://www.npmjs.com/package/moment)                                     |
+| React component for the moment date library           | [react-moment](https://www.npmjs.com/package/react-moment)                         |
