@@ -402,15 +402,7 @@ sudo npm install pm2@latest -g
 ### 2. 실행
 
 ```bash
-# node server 시작
-pm2 start server.js
-```
-
-```bash
-cd client
-
-# react 시작
-pm2 start yarn -- start
+pm2 start yarn -- run dev
 ```
 
 ## Docker
