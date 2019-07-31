@@ -197,6 +197,35 @@ sudo nginx -t
 sudo systemctl restart nginx
 ```
 
+### 6. SSL
+
+<https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-18-04>
+
+```bash
+# add the repository
+sudo add-apt-repository ppa:certbot/certbot
+
+# Install Certbot's Nginx package with apt
+sudo apt install python-certbot-nginx
+```
+
+```bash
+sudo vim /etc/nginx/sites-available/styel.io
+```
+
+```bash
+# /etc/nginx/sites-available/styel.io
+server_name styel.io www.styel.io;
+```
+
+```
+sudo certbot --nginx -d styel.io -d www.styel.io
+```
+
+```bash
+sudo certbot renew --dry-run
+```
+
 ## Step 2: Install Express for NodeJS
 
 ### 1. Set up nvm package
@@ -356,6 +385,125 @@ cd styel_react
 
 ```bash
 yarn start
+```
+
+---
+
+## PM2
+
+<http://pm2.keymetrics.io/>
+
+### 1. 설치
+
+```bash
+sudo npm install pm2@latest -g
+```
+
+### 2. 실행
+
+```bash
+# node server 시작
+pm2 start server.js
+```
+
+```bash
+cd client
+
+# react 시작
+pm2 start yarn -- start
+```
+
+## Docker
+
+<https://docs.docker.com/install/linux/docker-ce/ubuntu/>
+
+```bash
+# uninstall old versions
+sudo apt-get remove docker docker-engine docker.io containerd runc
+
+# SET UP THE REPOSITORY
+sudo apt-get update
+
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+
+# Add Docker’s official GPG key:
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+# Verify that you now have the key with the fingerprint 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88, by searching for the last 8 characters of the fingerprint.
+sudo apt-key fingerprint 0EBFCD88
+
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+```
+
+### INSTALL DOCKER CE
+
+```bash
+sudo apt-get update
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+# List the versions available in your repo:
+apt-cache madison docker-ce
+
+# sudo apt-get install docker-ce=<VERSION_STRING> docker-ce-cli=<VERSION_STRING> containerd.io
+sudo apt-get install docker-ce=5:18.09.7~3-0~ubuntu-bionic docker-ce-cli=5:18.09.7~3-0~ubuntu-bionic containerd.io
+```
+
+## VSFTPD
+
+```bash
+# 설치
+sudo apt-get install vsftpd
+
+# vsftpd.conf 설정
+
+sudo vim /etc/vsftpd.conf
+
+anonymous_enable=NO
+local_enable=YES
+write_enable=YES
+
+# (ftp서버 시작)
+sudo service vsftpd start
+
+# (ftp서버 상태확인)
+sudo service vsftpd status
+```
+
+VScode에서 원격 파일 제어
+VScode extensions에서 sftp by liximomo 검색
+
+`Cmd+Shift+P` 커맨드 팔레트를 열고 `SFTP: config`를 선택
+
+sftp.json
+
+VScode extensions에서 sftp by liximomo 검색
+
+`Cmd+Shift+P` 커맨드 팔레트를 열고 `SFTP: config`를 선택
+
+sftp.json
+
+```json
+{
+  "name": "styel",
+  "host": " ip or DNS ",
+  "protocol": "sftp",
+  "port": 22,
+  "username": "ubuntu",
+  "password": " your password ",
+  "privateKeyPath": " your key path ",
+  "remotePath": "/home/ubuntu/",
+  "uploadOnSave": true,
+  "ignore": [".vscode", ".git", ".DS_Store", "node_modules"]
+}
 ```
 
 ---
