@@ -42,34 +42,17 @@ const post = await newPost.save();
 res.json(post);
 ```
 
-## 2. 해시태그 기반 검색기능 구현
+## 2. 해시태그 기반 검색기능 구현 중 문제
 
-문제)
-포스트 스키마에 저장된 데이터베이스에서 검색 시 전체 글을 검색 해야되서 퍼포먼스 떨어짐.
+### 문제발생
 
-해결)
+포스트 스키마에 저장된 데이터베이스에서 검색 시 전체 글을 검색 해야되서 퍼포먼스 떨어짐. 비효율적, 자원 낭비.
+
+## 3. 해시태그 스키마 생성 및 분류하기
+
+### 해결 방법
+
 태그 스키마를 따로 생성 후 태그 콜렉션에 게시글 ID 저장
-
-검색기능 구현시 아래와 같이 요청 처리
-
-```js
-router.get("/:tag", async (req, res) => {
-  try {
-    const tag = req.params.tag;
-    const tagPostList = await Tag.findOne({ tag });
-    let posts = [];
-
-    for (let i = 0; i < tagPostList.postId.length; i++) {
-      posts.push(await Post.findById(tagPostList.postId[i]));
-    }
-    res.json(posts);
-  } catch (err) {
-    res.status(500).send("Server Error");
-  }
-});
-```
-
-## 2. 해시태그 스키마 생성 및 분류
 
 tag 스키마 생성
 
@@ -108,4 +91,23 @@ for (let i = 0; i < hashtagArray.length; i++) {
     await tag.save();
   }
 }
+```
+
+검색기능 구현시 아래와 같이 요청 처리
+
+```js
+router.get("/:tag", async (req, res) => {
+  try {
+    const tag = req.params.tag;
+    const tagPostList = await Tag.findOne({ tag });
+    let posts = [];
+
+    for (let i = 0; i < tagPostList.postId.length; i++) {
+      posts.push(await Post.findById(tagPostList.postId[i]));
+    }
+    res.json(posts);
+  } catch (err) {
+    res.status(500).send("Server Error");
+  }
+});
 ```
