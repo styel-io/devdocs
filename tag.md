@@ -11,7 +11,6 @@ var resultString = "<div>";
 var first = 0;
 var last = 0;
 var hashtagArray = [];
-var standByTag = "";
 
 // 각각의 일치하는 부분 검색
 while ((matchArray = re.exec(searchString)) != null) {
@@ -41,22 +40,67 @@ const newPost = new Post({
 const post = await newPost.save();
 
 res.json(post);
+```
 
-const post_id = post.id;
+## 2. 해시태그 기반 검색기능 구현
 
+문제)
+포스트 스키마에 저장된 데이터베이스에서 검색 시 전체 글을 검색 해야되서 퍼포먼스 떨어짐.
+
+해결)
+태그 스키마를 따로 생성 후 태그 콜렉션에 게시글 ID 저장
+
+검색기능 구현시 아래와 같이 요청 처리
+
+```js
+router.get("/:tag", async (req, res) => {
+  try {
+    const tag = req.params.tag;
+    const tagPostList = await Tag.findOne({ tag });
+    let posts = [];
+
+    for (let i = 0; i < tagPostList.postId.length; i++) {
+      posts.push(await Post.findById(tagPostList.postId[i]));
+    }
+    res.json(posts);
+  } catch (err) {
+    res.status(500).send("Server Error");
+  }
+});
+```
+
+## 2. 해시태그 스키마 생성 및 분류
+
+tag 스키마 생성
+
+```js
+const mongoose = require("mongoose");
+
+const TagSchema = new mongoose.Schema({
+  tag: {
+    type: String
+  },
+  postId: [
+    {
+      type: String
+    }
+  ]
+});
+
+module.exports = Tag = mongoose.model("tag", TagSchema);
+```
+
+글 작성시 입력값에서 해시태그를 분류하고 tag컬렉션에 저장
+
+```js
 for (let i = 0; i < hashtagArray.length; i++) {
-  console.log(hashtagArray[i]);
-  console.log(post_id);
   const tag = await Tag.findOne({ tag: hashtagArray[i] });
-
-  console.log(tag);
 
   if (tag === null) {
     const newTag = new Tag({
       tag: hashtagArray[i],
       postId: post_id
     });
-
     await newTag.save();
   } else {
     tag.postId.unshift(post_id);
@@ -65,7 +109,3 @@ for (let i = 0; i < hashtagArray.length; i++) {
   }
 }
 ```
-
-## 2. 해시태그 기반 검색기능 구현
-
-## 2. 해시태그 기반 검색기능 구현
